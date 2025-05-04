@@ -1,21 +1,35 @@
+// Load environment variables from .env file
+import dotenv from "dotenv";
+dotenv.config();
+
+// Import dependencies
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+
+// Import database connection and routes
 import connectDB from "./db/db.js";
-dotenv.config();
-connectDB();
+import readerRoutes from "./routes/reader.routes.js";
+import writerRoutes from "./routes/writer.routes.js";
+
+// Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
+connectDB();
+
+
+// Middleware
 app.use(cors());
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Routes
+app.use("/reader", readerRoutes);
+app.use("/writer", writerRoutes);
+// Root endpoint
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
+// Export app for server entry point
 export default app;
