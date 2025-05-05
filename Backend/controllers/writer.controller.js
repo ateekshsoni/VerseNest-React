@@ -31,6 +31,37 @@ const registerWriter = async (req, res, next) => {
     }
 }
 
+const loginWriter = async (req, res, next) => {
+    try {
+        // Validate request body using express-validator
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+
+        // Extract email and password from request body
+        const { email, password } = req.body;
+
+        const writer =  await WriterModel.findOne({ email }).select("+password");
+        if (!writer) {
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+        // Compare password with stored hash
+        const isMatch = await writer.comparePassword(password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+        // Generate authentication token for the writer 
+        const token = await writer.generateAuthToken();
+        // Send success response with writer info and token
+        res.status(200).json({ message: "Writer logged in successfully", writer, token });
+        
+    } catch (error) {
+        // Pass errors to error handling middleware
+        next(error);
+    }
+}
+
 // Export controller methods
-export default { registerWriter };
+export default { registerWriter , loginWriter };
 

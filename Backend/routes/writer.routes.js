@@ -23,6 +23,11 @@ router.post(
     writerController.registerWriter
 );
 
+router.post("/login",[
+    body("email").isEmail().withMessage("Invalid email format"),
+    body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters long")
+], writerController.loginWriter);
+
 // Export the router to be used in the main app
 export default router;
 
