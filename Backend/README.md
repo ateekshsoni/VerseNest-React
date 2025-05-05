@@ -1,3 +1,16 @@
+# Backend Overview
+
+This backend is built with Node.js, Express, and MongoDB (via Mongoose). It provides RESTful API endpoints for registering and logging in both readers and writers. Passwords are securely hashed, and JWT tokens are used for authentication. Input validation is handled using express-validator.
+
+**Main folders:**
+- `controllers/`: Handle request logic for each route.
+- `models/`: Define Mongoose schemas for Reader and Writer.
+- `routes/`: Define API endpoints and validation rules.
+- `services/`: Contain business logic for creating users.
+- `db/`: Database connection setup.
+
+---
+
 # API Documentation: Reader & Writer Registration
 
 ## Reader Registration
@@ -86,6 +99,78 @@
 ```json
 {
   "message": "Writer registered successfully",
+  "writer": { /* Writer object */ },
+  "token": "<JWT Token>"
+}
+```
+
+---
+
+## Reader Login
+
+- **Endpoint:** `POST /reader/login`
+- **Description:** Log in as a reader.
+
+### Request Body
+| Field    | Type   | Required | Description           |
+|----------|--------|----------|-----------------------|
+| email    | String | Yes      | Reader's email        |
+| password | String | Yes      | Reader's password     |
+
+#### Example Request
+```json
+{
+  "email": "jane@example.com",
+  "password": "securePass123"
+}
+```
+
+### Validation Rules
+- `email`: Required, must be valid email
+- `password`: Required, min 6 chars
+
+### Success Response
+- **Status:** 200 OK
+- **Body:**
+```json
+{
+  "message": "Reader logged in successfully",
+  "reader": { /* Reader object */ },
+  "token": "<JWT Token>"
+}
+```
+
+---
+
+## Writer Login
+
+- **Endpoint:** `POST /writer/login`
+- **Description:** Log in as a writer.
+
+### Request Body
+| Field    | Type   | Required | Description           |
+|----------|--------|----------|-----------------------|
+| email    | String | Yes      | Writer's email        |
+| password | String | Yes      | Writer's password     |
+
+#### Example Request
+```json
+{
+  "email": "john@example.com",
+  "password": "writerPass456"
+}
+```
+
+### Validation Rules
+- `email`: Required, must be valid email
+- `password`: Required, min 6 chars
+
+### Success Response
+- **Status:** 200 OK
+- **Body:**
+```json
+{
+  "message": "Writer logged in successfully",
   "writer": { /* Writer object */ },
   "token": "<JWT Token>"
 }
