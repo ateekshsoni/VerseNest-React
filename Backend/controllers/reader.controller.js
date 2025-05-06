@@ -61,5 +61,17 @@ const loginReader = async (req, res, next) => {
         next(error);
     }
 }
+
+// Controller for getting reader profile
+const getReaderProfile = async (req, res, next) =>
+    {
+        try {
+            res.status(200).json({ message: "Reader profile fetched successfully", reader: req.reader });
+        }catch (error) {
+            // Pass errors to error handling middleware
+            res.status(500).json({ message: "Internal server error" });
+            next(error);
+        }
+    }
 // Export controller methods
-export default { registerReader , loginReader };
+export default { registerReader , loginReader , getReaderProfile};

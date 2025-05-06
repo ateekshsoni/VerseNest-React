@@ -2,6 +2,7 @@
 import express from "express";
 import { body } from "express-validator";
 import readerController from "../controllers/reader.controller.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 // Create a new Express router instance
 const router = express.Router();
@@ -36,11 +37,22 @@ router.post(
   ],
   readerController.registerReader
 );
-router.post("/login",[
+router.post(
+  "/login",
+  [
     body("email").isEmail().withMessage("Invalid email format"),
-    body("password").isLength({ min: 6 }).withMessage("Password must be at least 6 characters long")
-], readerController.loginReader);
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long"),
+  ],
+  readerController.loginReader
+);
 
+router.get(
+  "/profile",
+  authMiddleware.authReader,
+  readerController.getReaderProfile
+);
 
 // Export the router to be used in the main app
 export default router;
