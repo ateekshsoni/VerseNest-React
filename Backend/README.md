@@ -178,6 +178,52 @@ This backend is built with Node.js, Express, and MongoDB (via Mongoose). It prov
 
 ---
 
+## Reader Profile
+
+- **Endpoint:** `GET /reader/profile`
+- **Description:** Fetch the authenticated reader's profile.
+- **Authentication:** Required (JWT token in `Authorization` header or `token` cookie)
+
+### Request Headers
+| Header         | Value                | Required | Description                |
+|----------------|---------------------|----------|----------------------------|
+| Authorization  | Bearer `<JWT Token>`| Yes      | JWT token from login/register |
+
+### Success Response
+- **Status:** 200 OK
+- **Body:**
+```json
+{
+  "message": "Reader profile fetched successfully",
+  "reader": { /* Reader object, excluding password */ }
+}
+```
+
+---
+
+## Writer Profile
+
+- **Endpoint:** `GET /writer/profile`
+- **Description:** Fetch the authenticated writer's profile.
+- **Authentication:** Required (JWT token in `Authorization` header or `token` cookie)
+
+### Request Headers
+| Header         | Value                | Required | Description                |
+|----------------|---------------------|----------|----------------------------|
+| Authorization  | Bearer `<JWT Token>`| Yes      | JWT token from login/register |
+
+### Success Response
+- **Status:** 200 OK
+- **Body:**
+```json
+{
+  "message": "Writer profile fetched successfully",
+  "writer": { /* Writer object, excluding password */ }
+}
+```
+
+---
+
 ## Error Responses
 - **Status:** 422 Unprocessable Entity
 - **Body:**
