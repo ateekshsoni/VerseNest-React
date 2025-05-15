@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes , Route } from 'react-router-dom'
-import GetStarted from './pages/GetStarted'
+import StartJourney from './pages/StartJourney'
 const App = () => {
   return (
     <>
-     <Routes >
-      <Route path='/login' element={<GetStarted />} />
-     </Routes>
+    <Routes>
+      <Route path='/start-journey' element={<StartJourney />} />
+    </Routes>
     </>
   )
 }
