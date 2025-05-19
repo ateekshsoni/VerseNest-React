@@ -6,7 +6,7 @@ import SIgnupForm from "./SIgnupForm";
 import LoginForm from "./LoginForm";
 const WriterForm = () => {
   const [showForm, setShowForm] = useState(true);
-  const [activeTab, setActiveTab] = useState("signup");
+  const [activeTab, setActiveTab] = useState('signup');
 
   const handleRoleSelect = () => {
     setShowForm(true);
@@ -25,7 +25,7 @@ const WriterForm = () => {
           onSelect={handleRoleSelect}
         />
       ) : (
-        <div className="opacity-100 h-full transform-none transition-all duration-500">
+        <div className="opacity-100 h-full w-full transform-none transition-all duration-500">
           <TabGroup
             tabs={[
               { id: "signup", label: "Sign Up" },

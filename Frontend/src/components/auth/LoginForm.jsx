@@ -54,13 +54,14 @@ const LoginForm = ({ onSubmit, type = "reader" }) => {
   };
   return (
     <>
-      <div className="w-full max-w-md">
+      <div className="w-full  ">
         <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-          <FormGroup label="Enter your email" error={errors.email}>
+          <FormGroup label="Enter your email" className={`${type}`} error={errors.email}>
             <Input
               type={"email"}
               id="email"
               name="email"
+              className={"bg-white py-6"}
               value={formData.email}
               onChange={handleChange}
               placeholder="your@email.com"
@@ -71,6 +72,7 @@ const LoginForm = ({ onSubmit, type = "reader" }) => {
             <Input
               type="password"
               id="password"
+              className={"bg-white py-6"}
               name="password"
               value={formData.password}
               onChange={handleChange}
