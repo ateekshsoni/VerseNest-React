@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import RoleSelector from "./RoleSelector";
 import QuillIcon from "../ui/icons/QuillIcon";
 import TabGroup from "../ui/TabGroup";
 import SIgnupForm from "./SIgnupForm";
 import LoginForm from "./LoginForm";
-const WriterForm = () => {
-  const [showForm, setShowForm] = useState(true);
-  const [activeTab, setActiveTab] = useState("signup");
-
+const WriterForm = ({ showForm, setShowForm, activeTab, setActiveTab, onOpen }) => {
   const handleRoleSelect = () => {
-    setShowForm(true);
+    onOpen("signup");
+  };
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    onOpen(tab); // This will reset the reader form
   };
   const handleSubmit = (formData) => {
     console.log(formData);
@@ -32,7 +33,7 @@ const WriterForm = () => {
               { id: "login", label: "Log In" },
             ]}
             activeTab={activeTab}
-            onChange={setActiveTab}
+            onChange={handleTabChange}
           />
 
           {activeTab === "signup" &&  (

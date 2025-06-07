@@ -3,6 +3,16 @@ import FormGroup from "../ui/FormGroup";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import CheckboxGroup from "../ui/CheckboxGroup";
+import { Textarea } from "../ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const SIgnupForm = ({ onSubmit, type = "reader" }) => {
   const [formData, setFormData] = useState({
@@ -13,10 +23,11 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
     ...(type === "writer" && {
       penName: "",
       bio: "",
-      genres: [],
+      genres: "",
     }),
     ...(type === "reader" && {
-      preferredGenres: [],
+      preferredGenres: "",
+      moodPreferences: [],
     }),
   });
   const [errors, setErrors] = useState({
@@ -31,18 +42,23 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
     }),
     ...(type === "reader" && {
       preferredGenres: "",
+      moodPreferences: "",
     }),
   });
 
   const genreOptions = [
-    { value: "fantasy", label: "Fantasy" },
-    { value: "sci-fi", label: "Science Fiction" },
-    { value: "mystery", label: "Mystery" },
-    { value: "romance", label: "Romance" },
-    { value: "thriller", label: "Thriller" },
-    { value: "horror", label: "Horror" },
-    { value: "historical", label: "Historical Fiction" },
-    { value: "non-fiction", label: "Non-Fiction" },
+    { value: "lyrical", label: "lyrical" },
+    { value: "narative", label: "narative" },
+    { value: "sonnet", label: "sonnet" },
+    { value: "haiku", label: "haiku" },
+    { value: "free-verse", label: "free verse" },
+    { value: "other", label: "other" },
+  ];
+  const moodePref = [
+    { value: "reflective", label: "Reflective" },
+    { value: "uplifting", label: "Uplifting" },
+    { value: "melancholic", label: "Melancholic" },
+    { value: "romantic", label: "Romantic" },
   ];
 
   const handleChange = (e) => {
@@ -103,12 +119,12 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
         newErrors.bio = "Biography is required";
       }
 
-      if (formData.genres.length === 0) {
+      if (formData.genres.length === "") {
         newErrors.genres = "Please select at least one genre";
       }
     }
 
-    if (type === "reader" && formData.preferredGenres.length === 0) {
+    if (type === "reader" && formData.preferredGenres.length === "") {
       newErrors.preferredGenres = "Please select at least one genre";
     }
 
@@ -121,14 +137,21 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    alert("Form submitted successfully!");
 
     if (validate()) {
       onSubmit(formData);
+    }else {
+      alert("Please fix the errors in the form.");
+      console.log("Form errors:", errors);
     }
   };
   return (
     <>
-      <div className="w-full max-w-md ">
+      <div className="w-full max-w-md my-5 py-2">
+        <h3 className="mb-6 text-3xl font-bold playfair">
+          {type == "reader" ? "Create Reader Account" : "Create Writer Account"}
+        </h3>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <FormGroup label={"Full Name"} error={errors.name}>
             <Input
@@ -137,6 +160,7 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              className={"bg-white px-4"}
               placeholder="Enter your full name"
               hasError={!!errors.name}
             />
@@ -149,6 +173,7 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
               value={formData.email}
               onChange={handleChange}
               placeholder="example@email.com"
+              className={"bg-white px-4"}
               hasError={!!errors.email}
             />
           </FormGroup>
@@ -161,6 +186,7 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
                 value={formData.penName}
                 onChange={handleChange}
                 placeholder="Your pen name"
+                className={"bg-white px-4"}
                 hasError={!!errors.penName}
               />
             </FormGroup>
@@ -172,6 +198,7 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
               id="password"
               name="password"
               value={formData.password}
+              className={"bg-white px-4"}
               onChange={handleChange}
               placeholder="••••••••"
               hasError={!!errors.password}
@@ -185,14 +212,59 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
+              className={"bg-white px-4"}
               placeholder="••••••••"
               hasError={!!errors.confirmPassword}
             />
           </FormGroup>
+          <FormGroup
+            label={type === "writer" ? "Writing Genres" : "Preferred Genres"}
+            error={type === "writer" ? errors.genres : errors.preferredGenres}
+          >
+            <Select>
+              <SelectTrigger className={"w-full bg-white px-4"}>
+                <SelectValue placeholder="Select genres" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Select your primary genre</SelectLabel>
+                  {genreOptions.map((option) => (
+                    <SelectItem
+                      key={option.value}
+                      value={option.value}
+                      onSelect={() => {
+                        const current =
+                          type === "writer"
+                            ? formData.genres
+                            : formData.preferredGenres;
+                        const alreadySelected = current.includes(option.value);
+                        const updated = alreadySelected
+                          ? current.filter((g) => g !== option.value)
+                          : [...current, option.value];
+                        handleGenreChange(updated);
+                      }}
+                    >
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            {type === "writer" && errors.genres && (
+              <div className="text-red-500 text-xs mt-1">
+                {errors.genres}
+              </div>
+            )}
+            {type === "reader" && errors.preferredGenres && (
+              <div className="text-red-500 text-xs mt-1">
+                {errors.preferredGenres}
+              </div>
+            )}
+          </FormGroup>
           {type === "writer" && (
             <FormGroup label="Bio" error={errors.bio}>
-              <Input
-                type="text"
+              <Textarea
+                className={"bg-white px-4"}
                 id="bio"
                 name="bio"
                 value={formData.bio}
@@ -202,19 +274,50 @@ const SIgnupForm = ({ onSubmit, type = "reader" }) => {
               />
             </FormGroup>
           )}
-          <FormGroup
-            label={type === "writer" ? "Writing Genres" : "Preferred Genres"}
-            error={type === "writer" ? errors.genres : errors.preferredGenres}
-          >
-            <CheckboxGroup
-              options={genreOptions}
-              selectedValues={
-                type === "writer" ? formData.genres : formData.preferredGenres
-              }
-              onChange={handleGenreChange}
-              name={type === "writer" ? "genres" : "preferredGenres"}
+          {type === "reader" && (
+            <FormGroup label="Mood Preferences">
+              <CheckboxGroup
+                options={moodePref}
+                selectedValues={formData.moodPreferences || []}
+                onChange={(selected) => {
+                  setFormData({
+                    ...formData,
+                    moodPreferences: selected,
+                  });
+                  if (errors.moodPreferences) {
+                    setErrors({
+                      ...errors,
+                      moodPreferences: "",
+                    });
+                  }
+                }}
+                name="moodPreferences"
+                orientation="horizontal"
+                className="grid grid-cols-2 gap-4"
+              />
+              {errors.moodPreferences && (
+                <div className="text-red-500 text-xs mt-1">
+                  {errors.moodPreferences}
+                </div>
+              )}
+            </FormGroup>
+          )}
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="agreeToTerms"
+              name="agreeToTerms"
+              checked={!!formData.agreeToTerms}
+              onChange={handleChange}
+              className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
             />
-          </FormGroup>
+            <label htmlFor="agreeToTerms" className="ml-2 text-sm text-gray-700">
+              I agree to the <a href="#" className="underline text-indigo-600">Terms and Conditions</a>
+            </label>
+          </div>
+          {errors.agreeToTerms && (
+            <div className="text-red-500 text-xs mt-1">{errors.agreeToTerms}</div>
+          )}
           <Button
             type="submit"
             size="lg"

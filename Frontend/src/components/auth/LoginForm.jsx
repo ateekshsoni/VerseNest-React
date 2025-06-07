@@ -63,6 +63,8 @@ const LoginForm = ({ onSubmit, type = "reader" }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className={"bg-white py-6"}
+              autoComplete="email"
               placeholder="your@email.com"
               hasError={!!errors.email}
             />
@@ -73,7 +75,9 @@ const LoginForm = ({ onSubmit, type = "reader" }) => {
               id="password"
               name="password"
               value={formData.password}
+              autoComplete="current-password"
               onChange={handleChange}
+              className={"bg-white py-6"}
               placeholder="••••••••"
               hasError={!!errors.password}
             />
