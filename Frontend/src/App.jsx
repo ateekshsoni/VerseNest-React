@@ -6,10 +6,11 @@ import CommingSoonPage from './Pages/ComingSoonPage'
 const App = () => {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<CommingSoonPage/>} />
         <Route path="/start-your-journey" element={<StartJourney />} />
-      </Routes>
+      </Routes> */}
+      <CommingSoonPage />
     </>
   )
 }
