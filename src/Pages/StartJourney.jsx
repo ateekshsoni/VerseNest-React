@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
-import "./Main.css"
-import Book from "@/components/layout/Book";
+import "./Main.css";
+import Book from "../components/layout/Book";
 
 const StartJourney = () => {
   return (
