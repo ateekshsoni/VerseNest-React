@@ -1,8 +1,8 @@
 import React from "react";
-import StartJourney from "./pages/StartJourney";
 import { Route, Router, Routes } from "react-router-dom";
 import CommingSoonPage from "./Pages/ComingSoonPage";
 import WriterHome from "./Pages/WriterHome";
+import StartJourney from "./Pages/StartJourney";
 
 const App = () => {
   return (
