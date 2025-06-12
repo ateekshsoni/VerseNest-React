@@ -75,6 +75,52 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* VerseNest Custom Theme Colors */
+  --aged-parchment: #f5ecd9;
+  --burnt-sienna: #a0522d;
+  --sepia-ink: #3e2723;
+  --dusty-rose: hsl(11, 24%, 70%);
+  --forest-moss: #618b5f;
+  --desaturated-teal: #4e6c6b;
+  --antique-gold: #c9b458;
+  --ivory-white: #faf8f0;
+
+  /* VerseNest Semantic Colors */
+  --verse-background: var(--aged-parchment);
+  --verse-sidebar-bg: var(--forest-moss);
+  --verse-card-bg: var(--ivory-white);
+  --verse-primary: var(--burnt-sienna);
+  --verse-primary-hover: #8b4513;
+  --verse-accent: var(--antique-gold);
+  --verse-dark-text: var(--sepia-ink);
+  --verse-medium-text: #5d4037;
+  --verse-light-text: #7d6e63;
+  --verse-border-color: rgba(160, 82, 45, 0.2);
+  --verse-highlight: var(--dusty-rose);
+  --verse-highlight-bg: rgba(196, 166, 159, 0.15);
+
+  /* VerseNest Typography */
+  --font-poetry: "Cormorant Garamond", serif;
+  --font-ui: "Open Sans", sans-serif;
+
+  /* VerseNest Shadows */
+  --shadow-soft: 0 5px 15px rgba(62, 39, 35, 0.05);
+  --shadow-medium: 0 8px 30px rgba(62, 39, 35, 0.08);
+  --shadow-strong: 0 10px 40px rgba(62, 39, 35, 0.1);
+
+  /* VerseNest Transitions */
+  --transition-smooth: all 0.3s ease;
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* VerseNest Border Radius */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+
+  /* VerseNest Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.2);
 }
 
 .dark {
@@ -118,6 +164,54 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  :root {
+    /* VerseNest Custom Theme Colors */
+    --aged-parchment: #f5ecd9;
+    --burnt-sienna: #a0522d;
+    --sepia-ink: #3e2723;
+    --dusty-rose: hsl(11, 24%, 70%);
+    --forest-moss: #618b5f;
+    --desaturated-teal: #4e6c6b;
+    --antique-gold: #c9b458;
+    --ivory-white: #faf8f0;
+
+    /* VerseNest Semantic Colors */
+    --verse-background: var(--aged-parchment);
+    --verse-sidebar-bg: var(--forest-moss);
+    --verse-card-bg: var(--ivory-white);
+    --verse-primary: var(--burnt-sienna);
+    --verse-primary-hover: #8b4513;
+    --verse-accent: var(--antique-gold);
+    --verse-dark-text: var(--sepia-ink);
+    --verse-medium-text: #5d4037;
+    --verse-light-text: #7d6e63;
+    --verse-border-color: rgba(160, 82, 45, 0.2);
+    --verse-highlight: var(--dusty-rose);
+    --verse-highlight-bg: rgba(196, 166, 159, 0.15);
+
+    /* VerseNest Typography */
+    --font-poetry: "Cormorant Garamond", serif;
+    --font-ui: "Open Sans", sans-serif;
+
+    /* VerseNest Shadows */
+    --shadow-soft: 0 5px 15px rgba(62, 39, 35, 0.05);
+    --shadow-medium: 0 8px 30px rgba(62, 39, 35, 0.08);
+    --shadow-strong: 0 10px 40px rgba(62, 39, 35, 0.1);
+
+    /* VerseNest Transitions */
+    --transition-smooth: all 0.3s ease;
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* VerseNest Border Radius */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+
+    /* VerseNest Glass Effect */
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.2);
+  }
 }
 .text-shadow-custom {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -128,4 +222,49 @@
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* VerseNest Custom Utility Classes */
+.bg-aged-parchment { background-color: var(--aged-parchment); }
+.bg-burnt-sienna { background-color: var(--burnt-sienna); }
+.bg-sepia-ink { background-color: var(--sepia-ink); }
+.bg-forest-moss { background-color: var(--forest-moss); }
+.bg-desaturated-teal { background-color: var(--desaturated-teal); }
+.bg-antique-gold { background-color: var(--antique-gold); }
+.bg-ivory-white { background-color: var(--ivory-white); }
+
+.text-aged-parchment { color: var(--aged-parchment); }
+.text-burnt-sienna { color: var(--burnt-sienna); }
+.text-sepia-ink { color: var(--sepia-ink); }
+.text-forest-moss { color: var(--forest-moss); }
+.text-desaturated-teal { color: var(--desaturated-teal); }
+.text-antique-gold { color: var(--antique-gold); }
+.text-ivory-white { color: var(--ivory-white); }
+
+.border-aged-parchment { border-color: var(--aged-parchment); }
+.border-burnt-sienna { border-color: var(--burnt-sienna); }
+.border-verse-border { border-color: var(--verse-border-color); }
+
+.font-poetry { font-family: var(--font-poetry); }
+.font-ui { font-family: var(--font-ui); }
+
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.shadow-medium { box-shadow: var(--shadow-medium); }
+.shadow-strong { box-shadow: var(--shadow-strong); }
+
+.transition-smooth { transition: var(--transition-smooth); }
+.transition-bounce { transition: var(--transition-bounce); }
+
+.rounded-verse-sm { border-radius: var(--border-radius-sm); }
+.rounded-verse-md { border-radius: var(--border-radius-md); }
+.rounded-verse-lg { border-radius: var(--border-radius-lg); }
+
+/* Text Wave Animation */
+@keyframes textWave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
 }

@@ -8,7 +8,9 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 }
-
+.boxshadowAvtar {
+  box-shadow: 0 0 15px #c9b4584d;
+}
 nav ul li {
   margin-bottom: 0.8rem;
   border-radius: 12px;
