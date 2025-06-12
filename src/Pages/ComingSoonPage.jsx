@@ -66,7 +66,7 @@ const CommingSoonPage = () => {
   };
 
   const handleDevAccess = () => {
-    navigate('/start-your-journey');
+    navigate('/writer/home');
   };
 
   return (

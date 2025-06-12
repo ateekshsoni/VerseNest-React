@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFeatherAlt } from '@fortawesome/free-solid-svg-icons';
+import {  faFeatherPointed } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Floating action button for creating new posts
@@ -11,7 +11,7 @@ import { faFeatherAlt } from '@fortawesome/free-solid-svg-icons';
 const FloatingActionButton = ({ 
   onClick,
   label = "Create new poem",
-  icon = faFeatherAlt
+  Faicon = faFeatherPointed
 }) => {
   return (
     <button
@@ -30,7 +30,7 @@ const FloatingActionButton = ({
       title={label}
     >
       <FontAwesomeIcon 
-        icon={icon} 
+        icon={Faicon}
         className="transition-transform duration-300 group-hover:scale-110" 
       />
     </button>

@@ -4,6 +4,7 @@ import CommingSoonPage from "./Pages/ComingSoonPage";
 import WriterHome from "./Pages/WriterHome";
 import StartJourney from "./Pages/StartJourney";
 
+
 const App = () => {
   return (
     <>
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/" element={<CommingSoonPage />} />
         <Route path="/start-your-journey" element={<StartJourney />} />
         <Route path="/writer/home" element={<WriterHome />} />
+
       </Routes>
     </>
   );
