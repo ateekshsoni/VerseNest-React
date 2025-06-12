@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useNavigate } from 'react-router-dom';
 
 const CommingSoonPage = () => {
   const containerRef = useRef(null);
@@ -9,6 +10,9 @@ const CommingSoonPage = () => {
   const quoteRef = useRef(null);
   const featuresRef = useRef(null);
   const notifyRef = useRef(null);
+  const devButtonRef = useRef(null);
+  
+  const navigate = useNavigate();
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -37,6 +41,11 @@ const CommingSoonPage = () => {
       { opacity: 0, y: 30 }, 
       { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
       "-=0.3"
+    )
+    .fromTo(devButtonRef.current, 
+      { opacity: 0, scale: 0.8 }, 
+      { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 
+      "-=0.2"
     );
 
     // Floating animation for decorative elements
@@ -56,11 +65,34 @@ const CommingSoonPage = () => {
     alert("Thank you! We'll notify you when we launch.");
   };
 
+  const handleDevAccess = () => {
+    navigate('/start-your-journey');
+  };
+
   return (
     <div 
       ref={containerRef}
       className="min-h-screen bg-gradient-to-br from-[#f5f1e8] via-[#f0ebe0] to-[#e8dcc6] relative overflow-hidden"
     >
+      {/* Developer Access Button */}
+      <div ref={devButtonRef} className="fixed top-6 right-6 z-50">
+        <button
+          onClick={handleDevAccess}
+          className="group relative px-4 py-2 bg-[#2c2417]/90 backdrop-blur-sm text-white rounded-lg border border-[#2c2417]/20 hover:bg-[#2c2417] transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            <span className="text-sm font-medium">Developer View</span>
+          </div>
+          {/* Tooltip */}
+          <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-[#2c2417] text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            View development version
+          </div>
+        </button>
+      </div>
+
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="floating-element absolute top-20 left-10 w-2 h-2 bg-[#2c2417] rounded-full opacity-20"></div>
