@@ -1,0 +1,893 @@
+/* Base Styles */
+:root {
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-rose-500: #f43f5e;
+  --color-emerald-600: #059669;
+  --color-blue-500: #3b82f6;
+  --border-radius: 0.5rem;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lora", "Georgia", serif;
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-900);
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-weight: 600;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Canvas for Ambient Animations */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: rgba(255, 251, 235, 0.8);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid var(--color-amber-200);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-amber-900);
+}
+
+.logo span {
+  color: var(--color-amber-700);
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-amber-500);
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-amber-200);
+  background-color: rgba(254, 243, 199, 0.5);
+  color: var(--color-amber-900);
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-container input:focus {
+  border-color: var(--color-amber-500);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-center {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+}
+
+.nav-right {
+  gap: 1.25rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--color-amber-700);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  color: var(--color-amber-900);
+}
+
+.icon-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-amber-300);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Featured Carousel */
+.featured-carousel {
+  position: relative;
+  height: 16rem;
+  overflow: hidden;
+  background-color: rgba(254, 243, 199, 0.3);
+  border-bottom: 1px solid var(--color-amber-200);
+}
+
+.carousel-container {
+  position: relative;
+  height: 90%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.carousel-content {
+  text-align: center;
+  max-width: 36rem;
+  padding: 0 1rem;
+}
+
+.featured-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-amber-700);
+  margin-bottom: 0.5rem;
+}
+
+.carousel-content h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-amber-900);
+  margin-bottom: 0.5rem;
+}
+
+.carousel-content .author {
+  font-size: 0.875rem;
+  color: var(--color-amber-800);
+  margin-bottom: 0.75rem;
+}
+
+.carousel-content .excerpt {
+  font-style: italic;
+  color: var(--color-amber-800);
+  margin-bottom: 1.5rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-amber-100);
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--color-amber-200);
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--color-amber-400);
+  border: none;
+  transition: all 0.3s;
+}
+
+.indicator.active {
+  width: 1rem;
+  background-color: var(--color-amber-700);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 251, 235, 0.8);
+  border: none;
+  border-radius: 9999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-amber-800);
+  transition: all 0.2s;
+}
+
+.carousel-btn:hover {
+  background-color: var(--color-amber-100);
+}
+
+.carousel-btn.prev {
+  left: 1rem;
+}
+
+.carousel-btn.next {
+  right: 1rem;
+}
+
+.carousel-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
+
+  .poem-feed {
+    width: 60%;
+  }
+
+  .reader-tools {
+    width: 40%;
+  }
+}
+
+/* Poem Feed */
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.feed-header h2 {
+  font-size: 1.25rem;
+  color: var(--color-amber-900);
+}
+
+.feed-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.375rem 0.75rem;
+  background-color: transparent;
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background-color: rgba(254, 243, 199, 0.5);
+}
+
+.filter-btn.active {
+  background-color: rgba(254, 243, 199, 0.5);
+}
+
+.poem-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.poem-card {
+  background-color: #fffbf0;
+  border: 1px solid var(--color-amber-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.poem-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://via.placeholder.com/800x600");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.poem-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.poem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.poet-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.poet-info h3 {
+  font-weight: 600;
+  color: var(--color-amber-900);
+  margin-bottom: 0.125rem;
+}
+
+.poet-info p {
+  font-size: 0.875rem;
+  color: var(--color-amber-700);
+}
+
+.poem-menu {
+  position: relative;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: var(--color-amber-700);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: rgba(254, 243, 199, 0.5);
+}
+
+.menu-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--color-amber-50);
+  border: 1px solid var(--color-amber-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  min-width: 10rem;
+  z-index: 10;
+  display: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-amber-900);
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--color-amber-100);
+}
+
+.poem-menu:hover .dropdown-menu {
+  display: block;
+}
+
+.poem-content {
+  padding: 0 1.25rem;
+  margin-top: 0.75rem;
+  color: var(--color-amber-800);
+  font-family: "Playfair Display", "Georgia", serif;
+  line-height: 1.7;
+}
+
+.poem-content.expandable {
+  max-height: 7rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.poem-content.expanded {
+  max-height: none;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: var(--color-amber-600);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  transition: color 0.2s;
+}
+
+.read-more:hover {
+  color: var(--color-amber-800);
+}
+
+.poem-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.tag {
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(254, 243, 199, 0.5);
+  border: 1px solid var(--color-amber-300);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: var(--color-amber-800);
+  transition: background-color 0.2s;
+}
+
+.tag:hover {
+  background-color: rgba(253, 230, 138, 0.5);
+}
+
+.poem-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--color-amber-200);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  color: var(--color-amber-700);
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.action-btn:hover {
+  color: var(--color-amber-900);
+}
+
+.action-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.like-btn.active {
+  color: var(--color-rose-500);
+}
+
+.like-btn.active svg {
+  fill: var(--color-rose-500);
+}
+
+.bookmark-btn.active svg {
+  fill: var(--color-amber-900);
+}
+
+.emotion-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-image: linear-gradient(to right, var(--color-amber-200), var(--color-amber-300));
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.emotion-btn:hover {
+  background-image: linear-gradient(to right, var(--color-amber-300), var(--color-amber-400));
+}
+
+.discover-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  background-color: var(--color-amber-100);
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.discover-btn:hover {
+  background-color: var(--color-amber-200);
+}
+
+/* Reader Tools */
+.reader-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card,
+.quote-card {
+  background-color: var(--color-amber-50);
+  border: 1px solid var(--color-amber-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.quote-card {
+  padding: 1.25rem;
+  background-image: linear-gradient(to bottom right, var(--color-amber-50), var(--color-amber-100));
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://via.placeholder.com/400x200");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.quote-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-amber-900);
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.quote-content {
+  position: relative;
+  transition: opacity 0.5s;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--color-amber-800);
+  margin-bottom: 0.5rem;
+}
+
+.quote-author {
+  font-size: 0.875rem;
+  color: var(--color-amber-700);
+  text-align: right;
+}
+
+.card-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-amber-200);
+}
+
+.card-header h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-amber-900);
+}
+
+.collections-list,
+.poets-list {
+  border-top: none;
+}
+
+.collection-item,
+.poet-item {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.collection-item:hover,
+.poet-item:hover {
+  background-color: rgba(254, 243, 199, 0.5);
+}
+
+.collection-item:not(:last-child),
+.poet-item:not(:last-child) {
+  border-bottom: 1px solid var(--color-amber-200);
+}
+
+.collection-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.collection-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.collection-icon.heart {
+  color: var(--color-rose-500);
+}
+
+.collection-icon.book {
+  color: var(--color-amber-600);
+}
+
+.collection-icon.bookmark {
+  color: var(--color-emerald-600);
+}
+
+.collection-icon.star {
+  color: var(--color-blue-500);
+}
+
+.collection-count {
+  font-size: 0.875rem;
+  color: var(--color-amber-700);
+}
+
+.create-new,
+.view-more {
+  justify-content: center;
+  color: var(--color-amber-700);
+  font-size: 0.875rem;
+}
+
+.create-new:hover,
+.view-more:hover {
+  color: var(--color-amber-900);
+}
+
+.poet-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.poet-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-amber-900);
+}
+
+.poet-genre {
+  font-size: 0.75rem;
+  color: var(--color-amber-700);
+}
+
+.follow-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(254, 243, 199, 0.5);
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+
+.follow-btn:hover {
+  background-color: rgba(253, 230, 138, 0.5);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.category-item {
+  padding: 0.5rem;
+  background-color: rgba(254, 243, 199, 0.5);
+  border: 1px solid var(--color-amber-200);
+  border-radius: var(--border-radius);
+  text-align: center;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.category-item:hover {
+  background-color: rgba(253, 230, 138, 0.5);
+}
+
+.category-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-amber-900);
+}
+
+.category-count {
+  font-size: 0.75rem;
+  color: var(--color-amber-700);
+}
+
+.circles-list {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.circle-btn {
+  padding: 0.5rem;
+  background-image: linear-gradient(to right, var(--color-amber-200), var(--color-amber-300));
+  border: 1px solid var(--color-amber-300);
+  color: var(--color-amber-900);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.circle-btn:hover {
+  background-image: linear-gradient(to right, var(--color-amber-300), var(--color-amber-400));
+}
+
+/* Footer */
+.footer {
+  background-color: rgba(254, 243, 199, 0.5);
+  border-top: 1px solid var(--color-amber-200);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-amber-800);
+  margin-top: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-center {
+    display: none;
+  }
+
+  .carousel-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .carousel-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .feed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .poem-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .bookmark-btn {
+    align-self: flex-end;
+    margin-top: -1.5rem;
+  }
+}
