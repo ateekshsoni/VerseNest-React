@@ -32,7 +32,13 @@ const TrendingPoet = ({
           className="w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-antique-gold/30 transition-smooth"
           loading="lazy"
           onError={(e) => {
-            e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=c9b458&color=3e2723&size=50`;
+            // Hide the broken image and show placeholder
+            e.target.style.display = 'none';
+            e.target.parentElement.innerHTML = `
+              <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-amber-700 font-bold text-lg border-2 border-transparent">
+                ${name.charAt(0)}
+              </div>
+            `;
           }}
         />
         <div 

@@ -36,7 +36,7 @@ const ReaderFeed = () => {
       tags: ["Haiku", "Nature", "Autumn"],
       likes: 142,
       comments: 23,
-      avatar: "https://via.placeholder.com/40"
+      avatar: null
     },
     {
       id: 2,
@@ -47,7 +47,7 @@ const ReaderFeed = () => {
       tags: ["Free Verse", "Night", "Dreams"],
       likes: 89,
       comments: 12,
-      avatar: "https://via.placeholder.com/40"
+      avatar: null
     },
     {
       id: 3,
@@ -58,7 +58,7 @@ const ReaderFeed = () => {
       tags: ["Ocean", "Lyrical", "Peace"],
       likes: 217,
       comments: 31,
-      avatar: "https://via.placeholder.com/40"
+      avatar: null
     }
   ];
 

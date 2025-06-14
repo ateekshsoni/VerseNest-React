@@ -30,6 +30,7 @@
 
 import React, { useState } from 'react';
 import { Heart, MessageCircle, Share, Bookmark, MoreHorizontal } from 'lucide-react';
+import AvatarPlaceholder from './AvatarPlaceholder';
 
 const ReaderPoemCard = ({ poem }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -93,7 +94,7 @@ const ReaderPoemCard = ({ poem }) => {
     tags = [],
     likes = 0,
     comments = 0,
-    avatar = "https://via.placeholder.com/40"
+    avatar = null
   } = poem || {};
 
   return (
@@ -101,15 +102,24 @@ const ReaderPoemCard = ({ poem }) => {
       {/* Header */}
       <header className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-200 group-hover:border-amber-300 transition-colors duration-200">
-            <img
-              src={avatar}
-              alt={`${author} profile`}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/48?text=A';
-              }}
-            />
+          <div className="w-12 h-12">
+            {avatar ? (
+              <img
+                src={avatar}
+                alt={`${author} profile`}
+                className="w-full h-full object-cover rounded-full border-2 border-amber-200 group-hover:border-amber-300 transition-colors duration-200"
+                onError={(e) => {
+                  // Replace with AvatarPlaceholder on error
+                  e.target.style.display = 'none';
+                }}
+              />
+            ) : (
+              <AvatarPlaceholder 
+                name={author} 
+                size={48} 
+                className="border-2 border-amber-200 group-hover:border-amber-300 transition-colors duration-200"
+              />
+            )}
           </div>
           <div>
             <h3 className="text-lg font-semibold text-amber-900 group-hover:text-amber-800 transition-colors duration-200">

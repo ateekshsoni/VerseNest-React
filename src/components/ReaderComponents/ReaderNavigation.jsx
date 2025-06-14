@@ -2,7 +2,16 @@
  * ReaderNavigation Component
  * 
  * Responsive navigation bar for the reader experience
- * Features search functionality and user actions
+ * Features search f          <button
+            className="p-1 rounded-lg hover:bg-amber-100/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+            aria-label="User menu"
+          >
+            <AvatarPlaceholder 
+              name="User" 
+              size={32} 
+              className="border-2 border-amber-300 hover:border-amber-400 transition-colors duration-200"
+            />
+          </button>d user actions
  * 
  * Features:
  * - Responsive design with mobile adaptations
@@ -18,6 +27,7 @@
 
 import React, { useState } from 'react';
 import { Search, Bell, MessageCircle, Bookmark } from 'lucide-react';
+import AvatarPlaceholder from './AvatarPlaceholder';
 
 const ReaderNavigation = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -120,7 +130,13 @@ const ReaderNavigation = () => {
                 alt="User profile"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/32?text=U';
+                  // Hide the broken image and show placeholder
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = `
+                    <div class="w-full h-full bg-amber-200 flex items-center justify-center text-amber-700 font-bold text-sm">
+                      U
+                    </div>
+                  `;
                 }}
               />
             </div>

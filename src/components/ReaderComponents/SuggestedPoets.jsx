@@ -18,6 +18,7 @@
 
 import React, { useState } from 'react';
 import { UserPlus, UserCheck, ChevronRight } from 'lucide-react';
+import AvatarPlaceholder from './AvatarPlaceholder';
 
 const SuggestedPoets = () => {
   const [poets, setPoets] = useState([
@@ -25,7 +26,7 @@ const SuggestedPoets = () => {
       id: 1,
       name: 'Olivia Nightshade',
       genre: 'Gothic Romance',
-      avatar: 'https://via.placeholder.com/40',
+      avatar: null,
       isFollowing: false,
       followers: 1247
     },
@@ -33,7 +34,7 @@ const SuggestedPoets = () => {
       id: 2,
       name: 'Ethan Silverwood',
       genre: 'Modern Haiku',
-      avatar: 'https://via.placeholder.com/40',
+      avatar: null,
       isFollowing: false,
       followers: 892
     },
@@ -41,7 +42,7 @@ const SuggestedPoets = () => {
       id: 3,
       name: 'Isabella Moonsong',
       genre: 'Spiritual',
-      avatar: 'https://via.placeholder.com/40',
+      avatar: null,
       isFollowing: false,
       followers: 2341
     },
@@ -49,7 +50,7 @@ const SuggestedPoets = () => {
       id: 4,
       name: 'Marcus Chen',
       genre: 'Contemporary',
-      avatar: 'https://via.placeholder.com/40',
+      avatar: null,
       isFollowing: true,
       followers: 756
     }
@@ -133,7 +134,13 @@ const SuggestedPoets = () => {
                     alt={`${poet.name} profile`}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/48?text=${poet.name.charAt(0)}`;
+                      // Hide the broken image and show placeholder
+                      e.target.style.display = 'none';
+                      e.target.parentElement.innerHTML = `
+                        <div class="w-full h-full bg-amber-200 flex items-center justify-center text-amber-700 font-bold text-lg">
+                          ${poet.name.charAt(0)}
+                        </div>
+                      `;
                     }}
                   />
                 </div>
