@@ -1,4 +1,5 @@
 import React from "react";
+import OptimizedImage from "../ui/OptimizedImage";
 
 /**
  * Reusable user profile component for sidebar
@@ -42,15 +43,14 @@ const UserProfile = ({
     >
       {/* Avatar */}
       <div className="relative w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-[#c9b458] flex-shrink-0">
-        <img 
+        <OptimizedImage 
           className="object-cover w-full h-full" 
           src={avatarSrc} 
           alt={avatarAlt}
           loading="lazy"
-          onError={(e) => {
-            // Fallback to a default avatar if image fails to load
-            e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNjOWI0NTgiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI4IiB5PSI4Ij4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMTRDOC4xMzQwMSAxNCA1IDE3LjEzNDUgNSAyMUg5QzE5IDIxIDIwIDIxIDE5IDIxSDE5QzE5IDE3LjEzNDUgMTUuODY2IDE0IDEyIDE0WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo=";
-          }}
+          fallbackText={name?.charAt(0) || 'U'}
+          width={48}
+          height={48}
         />
       </div>
       

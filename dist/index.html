@@ -2,19 +2,156 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Favicon and App Icons -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/vite.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Viewport and Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F59E0B" />
+    <meta name="color-scheme" content="light" />
+    
+    <!-- SEO Meta Tags -->
+    <title>VerseNest - Poetry Community Platform</title>
+    <meta name="description" content="Join VerseNest, a vibrant poetry community where writers share verses and readers discover beautiful poetry. Connect with poets, explore collections, and immerse yourself in the world of literature." />
+    <meta name="keywords" content="poetry, poems, literature, writers, poets, community, creative writing, verse, literary, artistic expression" />
+    <meta name="author" content="VerseNest Team" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://versenest.com/" />
+    <meta property="og:title" content="VerseNest - Poetry Community Platform" />
+    <meta property="og:description" content="A vibrant poetry community where writers share verses and readers discover beautiful poetry." />
+    <meta property="og:image" content="https://versenest.com/og-image.jpg" />
+    <meta property="og:site_name" content="VerseNest" />
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://versenest.com/" />
+    <meta property="twitter:title" content="VerseNest - Poetry Community Platform" />
+    <meta property="twitter:description" content="A vibrant poetry community where writers share verses and readers discover beautiful poetry." />
+    <meta property="twitter:image" content="https://versenest.com/twitter-image.jpg" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://versenest.com/" />
+    
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Font Loading with Display Swap for Performance -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/assets/index-BFL1Q543.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BciT9mkR.css">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VerseNest",
+      "description": "A poetry community platform for writers and readers",
+      "url": "https://versenest.com",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "VerseNest Team"
+      }
+    }
+    </script>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/Rabindranath.avif" as="image" type="image/avif" />
+    
+    <!-- DNS Prefetch for External Resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- Performance Hint -->
+    <meta name="format-detection" content="telephone=no" />
+    <script type="module" crossorigin src="/assets/index-CB41QSQZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-CMmhtoO5.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-CBa4Q3vi.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-Dd_wLzvn.js">
+    <link rel="modulepreload" crossorigin href="/assets/helmet-CAzaxHIw.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CIg29FvZ.css">
   </head>
   <body>
+    <!-- Loading Screen for Better UX -->
+    <div id="initial-loader" style="
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      z-index: 9999;
+      font-family: 'Montserrat', sans-serif;
+    ">
+      <div style="text-align: center;">
+        <div style="
+          width: 60px; 
+          height: 60px; 
+          border: 4px solid #F59E0B; 
+          border-top: 4px solid transparent; 
+          border-radius: 50%; 
+          animation: spin 1s linear infinite; 
+          margin: 0 auto 20px;
+        "></div>
+        <h2 style="color: #92400E; margin: 0; font-size: 24px; font-weight: 600;">VerseNest</h2>
+        <p style="color: #B45309; margin: 10px 0 0; font-size: 14px;">Loading your poetry journey...</p>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide loader when React app loads */
+      #initial-loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+    </style>
+    
+    <!-- Main App Container -->
     <div id="root"></div>
+    
+    <!-- Script to hide loader when React loads -->
+    <script>
+      // Hide loader when DOM content is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 300);
+          }
+        }, 500);
+      });
+    </script>
+    
+    <!-- Main Application Script -->
   </body>
 </html>

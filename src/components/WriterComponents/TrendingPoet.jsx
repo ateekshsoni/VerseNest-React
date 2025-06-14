@@ -1,4 +1,5 @@
 import React from 'react';
+import OptimizedImage from '../ui/OptimizedImage';
 
 /**
  * Individual trending poet component
@@ -26,20 +27,14 @@ const TrendingPoet = ({
     >
       {/* Avatar */}
       <div className="relative mr-4 flex-shrink-0">
-        <img
+        <OptimizedImage
           src={avatar || '/Rabindranath.avif'}
           alt={`${name}'s profile picture`}
           className="w-12 h-12 rounded-full object-cover border-2 border-transparent group-hover:border-antique-gold/30 transition-smooth"
           loading="lazy"
-          onError={(e) => {
-            // Hide the broken image and show placeholder
-            e.target.style.display = 'none';
-            e.target.parentElement.innerHTML = `
-              <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-amber-700 font-bold text-lg border-2 border-transparent">
-                ${name.charAt(0)}
-              </div>
-            `;
-          }}
+          fallbackText={name?.charAt(0) || 'P'}
+          width={48}
+          height={48}
         />
         <div 
           className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" 

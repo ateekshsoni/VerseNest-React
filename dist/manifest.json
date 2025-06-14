@@ -1,0 +1,41 @@
+{
+  "name": "VerseNest - Poetry Community",
+  "short_name": "VerseNest",
+  "description": "A vibrant poetry community where writers share verses and readers discover beautiful poetry",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FEF3C7",
+  "theme_color": "#F59E0B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "entertainment", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1200x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png", 
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "features": [
+    "poetry sharing",
+    "community interaction", 
+    "content discovery",
+    "user profiles"
+  ]
+}

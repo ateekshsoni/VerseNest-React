@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useNavigate } from 'react-router-dom';
@@ -69,13 +70,76 @@ const CommingSoonPage = () => {
     navigate('/writer/home');
   };
 
-  return (
-    <div 
-      ref={containerRef}
-      className="min-h-screen bg-gradient-to-br from-[#f5f1e8] via-[#f0ebe0] to-[#e8dcc6] relative overflow-hidden"
-    >
-      {/* Developer Access Button */}
-      <div ref={devButtonRef} className="fixed top-6 right-6 z-50">
+  return ( 
+  <>
+       {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Coming Soon - VerseNest | Poetry Community Platform</title>
+        <meta 
+          name="description" 
+          content="VerseNest is launching soon - A sanctuary for poets and poetry lovers. Where words find their home and hearts find their voice. Join our community of writers and readers." 
+        />
+        <meta name="keywords" content="poetry, coming soon, poets, creative writing, literature, verse, community, launch" />
+        <meta name="keywords" content="poetry, poets, coming soon, VerseNest" />
+        <meta name="author" content="VerseNest Team" />
+        <link rel="canonical" href="https://www.versenest.com/coming-soon" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Coming Soon - VerseNest Poetry Platform" />
+        <meta property="og:description" content="A sanctuary for poets and poetry lovers. Join our waitlist for early access." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://versenest.com" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:title" content="Coming Soon - VerseNest Poetry Platform" />
+        <meta name="twitter:description" content="A sanctuary for poets and poetry lovers. Join our waitlist for early access." />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ComingSoon",
+            "name": "VerseNest",
+            "description": "A sanctuary for poets and poetry lovers",
+            "url": "https://versenest.com",
+            "expectedLaunchDate": "2025-07-01",
+            "applicationCategory": "SocialNetworkingApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Coming Soon - VerseNest",
+            "description": "VerseNest is launching soon. A sanctuary for poets and poetry lovers. Where words find their home and hearts find their voice.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "VerseNest",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.versenest.com/logo.png"
+              }
+            },
+            "image": "https://www.versenest.com/coming-soon-image.jpg",
+            "url": "https://www.versenest.com/coming-soon",
+            "mainEntityOfPage": true
+          }
+        `}
+        </script>
+      </Helmet>
+
+      <div 
+        ref={containerRef}
+        className="min-h-screen bg-gradient-to-br from-[#f5f1e8] via-[#f0ebe0] to-[#e8dcc6] relative overflow-hidden"
+      >
+        {/* Developer Access Button */}
+        <div ref={devButtonRef} className="fixed top-6 right-6 z-50">
         <button
           onClick={handleDevAccess}
           className="group relative px-4 py-2 bg-[#2c2417]/90 backdrop-blur-sm text-white rounded-lg border border-[#2c2417]/20 hover:bg-[#2c2417] transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -91,6 +155,7 @@ const CommingSoonPage = () => {
             View development version
           </div>
         </button>
+        </div>
       </div>
 
       {/* Decorative Background Elements */}
@@ -199,8 +264,11 @@ const CommingSoonPage = () => {
           <p>© 2025 VerseNest. Crafted with love for poetry.</p>
         </div>
       </div>
-    </div>
+  </>
   );
+  
 };
+
+
 
 export default CommingSoonPage;
